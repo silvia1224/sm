@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+       <!-- <ion-back-button></ion-back-button> -->
+       <ion-button (click)="goBack()">
+         <ion-icon name="arrow-round-back" slot="icon-only"></ion-icon>
+       </ion-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="商品搜索..."></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- 卡片:商品列表 -->
+  <ion-card>
+    <ion-item *ngFor="let p of productList" detail>
+      <ion-thumbnail slot="start">
+        <img [src]="api.server +p.pic" >
+
+      </ion-thumbnail>
+      <ion-label>
+        <h5>{{p.title}}</h5>
+        <ion-text color="danger">{{p.price | currency:'￥'}}</ion-text>
+      </ion-label>                                                                                                                                                                                                                                                                                                                                                                                                        
+      <ion-button [routerLink]="'/product-detail/'+p.lid">查看详情</ion-button>
+    </ion-item>
+  </ion-card>
+  <!-- 按钮:没有更多数据了 -->
+   <ion-button *ngIf="!hasMore" expand="block" disabled="true">没有更多数据可加载了</ion-button>
+  <!-- 无限滚动:只要还有更多数据可供加载,就显示出来 -->
+  <ion-infinite-scroll *ngIf="hasMore" #myInfiniteScroll threshold="50px" (ionInfinite)="loadData()">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载中,晴稍后..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

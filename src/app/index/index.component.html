@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="../../assets/logo.png" slot="start">
+    <ion-searchbar placeholder="商品搜索..."></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <!-- 轮播广告 -->
+    <ion-slides #indexSlides  pager="true">
+      <ion-slide *ngFor="let p of carouselItems">
+        <img [src]="api.server+p.img">
+      </ion-slide>
+    </ion-slides>
+
+    <!-- 1楼商品 -->
+    <ion-item>
+      <img src="../../assets/computer_icon.png" slot="start">
+      <ion-label>首页推荐 /1F</ion-label>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let p of newArrivalItems">
+           <ion-card>
+             <img [src]="api.server+p.pic">
+             <ion-card-header>
+                <ion-card-title>
+                  <h6 class="product-title"> {{p.title}}</h6>
+                </ion-card-title>
+                <ion-card-subtitle>
+                  <p class="product-subtitle">{{p.details}}</p>
+                </ion-card-subtitle>
+             </ion-card-header>
+             <ion-card-content>
+               <ion-label color="primary">{{p.price | currency:'￥'}}</ion-label>
+                <ion-button size="small" [routerLink]="'/product-detail/'+p.pid">查看详情</ion-button>
+             </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- 2楼商品 -->
+    <ion-item>
+      <img src="../../assets/computer_icon.png" slot="start">
+      <ion-label>最新上架 /2F</ion-label>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let p of recommendedItems">
+          <ion-card>
+            <img [src]="api.server+p.pic">
+            <ion-card-header>
+              <ion-card-title>
+                <h6 class="product-title">{{p.title}}</h6>
+              </ion-card-title>
+              <ion-card-subtitle>
+                <p class="product-subtitle">{{p.details}}</p>
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-label>{{p.price | currency:'￥'}}</ion-label>
+              <ion-button size="small" [routerLink]="'/product-detail/'+p.pid">查看详情</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- 3楼商品 -->
+    <ion-item>
+        <img src="../../assets/computer_icon.png" slot="start">
+        <ion-label>热销单品 /3F</ion-label>
+    </ion-item>
+    <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let p of topSaleItems">
+            <ion-card>
+              <img [src]="api.server+p.pic">
+              <ion-card-header>
+                <ion-card-title>
+                  <h6 class="product-title">{{p.title}}</h6>
+                </ion-card-title>
+                <ion-card-subtitle>
+                  <p class="product-subtitle">{{p.details}}</p>
+                </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-label>{{p.price | currency:'￥'}}</ion-label>
+                <ion-button size="small" [routerLink]="'/product-detail/'+p.pid">查看详情</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- 页尾图标 -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <div class="ion-text-center">
+            <img src="../../assets/icon1.png" alt="">
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div class="ion-text-center">
+            <img src="../../assets/icon2.png" alt=""> 
+          </div>
+        </ion-col>
+          <ion-col size="3">
+            <div class="ion-text-center">
+              <img src="../../assets/icon3.png" alt="">
+            </div>
+        </ion-col>
+        <ion-col size="3">
+            <div class="ion-text-center">
+              <img src="../../assets/icon4.png" alt="">
+            </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
